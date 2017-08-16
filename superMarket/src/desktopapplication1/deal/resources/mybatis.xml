@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : mybatis.xml.xml
+    Created on : 2017年8月6日, 下午5:44
+    Author     : Administrator
+    Description:
+        Purpose of the document follows.
+-->
+
+
+<configuration>
+<dataSource>
+    
+</dataSource>    
+
+</configuration>
