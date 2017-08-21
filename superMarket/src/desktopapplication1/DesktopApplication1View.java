@@ -219,6 +219,7 @@ private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 private void btnInAndOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInAndOutActionPerformed
     PanelCashDeal panel = new PanelCashDeal();
     JFrame jf = new JFrame();
+    jf.setTitle("出货");
     jf.add(panel);
     DesktopApplication1.getApplication().show(jf);
 }//GEN-LAST:event_btnInAndOutActionPerformed
