@@ -5,7 +5,7 @@
 package desktopapplication1.base;
 
 import desktopapplication1.deal.model.OrderModel;
-import desktopapplication1.deal.model.StockDealModel;
+import java.util.Date;
 
 /**
  *
@@ -20,5 +20,10 @@ public class DataBaseUtil {
     }
 
     private static void initTradeid(OrderModel order) {
+        Date today = new Date();
+        String todayStr = DateUtils.date2Str(today);
+       
+        String tradeid = todayStr+"";
     }
+    
 }
