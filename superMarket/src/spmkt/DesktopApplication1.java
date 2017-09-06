@@ -2,7 +2,7 @@
  * DesktopApplication1.java
  */
 
-package desktopapplication1;
+package spmkt;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;

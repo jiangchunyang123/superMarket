@@ -8,12 +8,12 @@
  *
  * Created on 2017-8-6, 17:24:57
  */
-package desktopapplication1.deal;
+package spmkt.deal;
 
 import com.mysql.jdbc.StringUtils;
-import desktopapplication1.base.DataBaseUtil;
-import desktopapplication1.deal.model.OrderModel;
-import desktopapplication1.deal.model.StockDealModel;
+import spmkt.base.DataBaseUtil;
+import spmkt.deal.model.OrderModel;
+import spmkt.deal.model.StockDealModel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -67,7 +67,7 @@ public class PanelCashDeal extends javax.swing.JPanel {
         txtDealDetails.setName("txtDealDetails"); // NOI18N
         jScrollPane1.setViewportView(txtDealDetails);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(desktopapplication1.DesktopApplication1.class).getContext().getResourceMap(PanelCashDeal.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(spmkt.DesktopApplication1.class).getContext().getResourceMap(PanelCashDeal.class);
         txtInputText.setText(resourceMap.getString("txtInputText.text")); // NOI18N
         txtInputText.setName("txtInputText"); // NOI18N
         txtInputText.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +241,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         StockDealModel deal = new StockDealModel();
         deal.setDealdate(new Date());
         deal.setPrice(new BigDecimal(123));
-        deal.setStockName("牙刷");
+        DataBaseUtil.initTradeid(new OrderModel());
         return deal;
     }
 }

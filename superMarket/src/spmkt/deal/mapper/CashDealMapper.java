@@ -2,9 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package desktopapplication1.deal.mapper;
-
-import desktopapplication1.deal.model.OrderModel;
+package spmkt.deal.mapper;
 
 /**
  *
@@ -12,5 +10,5 @@ import desktopapplication1.deal.model.OrderModel;
  */
 public interface CashDealMapper {
 
-    OrderModel findMaxIdOrder();
+    Integer findMaxIdOrder();
 }

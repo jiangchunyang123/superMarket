@@ -10,8 +10,8 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.test.entity.Employee" alias="Employee"/>
-        <typeAlias type="com.test.entity.Customer" alias="Customer"/>
+        <typeAlias type="spmkt.deal.model.Stock" alias="Stock"/>
+        <typeAlias type="spmkt.deal.model.OrderModel" alias="Order"/>
     </typeAliases>
 
     <environments default="local">
@@ -19,7 +19,7 @@
             <transactionManager type="JDBC"></transactionManager>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/orcl"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/know_you_self"/>
                 <property name="username" value="root"/>
                 <property name="password" value="123456"/>
             </dataSource>
@@ -28,7 +28,6 @@
 
 
     <mappers>
-        <mapper resource="com/test/data/employee-mapper.xml"/>
-        <mapper resource="com/test/data/customer-mapper.xml"/>
+        <mapper resource="spmkt/deal/mapper/CashDealMapper.xml"/>
     </mappers>
 </configuration>

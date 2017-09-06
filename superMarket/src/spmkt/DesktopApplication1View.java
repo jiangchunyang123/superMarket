@@ -1,9 +1,9 @@
 /*
  * DesktopApplication1View.java
  */
-package desktopapplication1;
+package spmkt;
 
-import desktopapplication1.deal.PanelCashDeal;
+import spmkt.deal.PanelCashDeal;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -15,6 +15,9 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import spmkt.base.DataBaseUtil;
+import spmkt.deal.PanelInStock;
 
 /**
  * The application's main frame.
@@ -25,7 +28,7 @@ public class DesktopApplication1View extends FrameView {
         super(app);
 
         initComponents();
-
+        initData();
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -111,6 +114,7 @@ public class DesktopApplication1View extends FrameView {
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btnInAndOut = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
@@ -132,11 +136,11 @@ public class DesktopApplication1View extends FrameView {
 
         menuBar.setName("menuBar"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(desktopapplication1.DesktopApplication1.class).getContext().getResourceMap(DesktopApplication1View.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(spmkt.DesktopApplication1.class).getContext().getResourceMap(DesktopApplication1View.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(desktopapplication1.DesktopApplication1.class).getContext().getActionMap(DesktopApplication1View.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(spmkt.DesktopApplication1.class).getContext().getActionMap(DesktopApplication1View.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
@@ -168,6 +172,15 @@ public class DesktopApplication1View extends FrameView {
             }
         });
         jMenu1.add(btnInAndOut);
+
+        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
+        jMenuItem1.setName("jMenuItem1"); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         menuBar.add(jMenu1);
 
@@ -217,15 +230,16 @@ private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 }//GEN-LAST:event_jMenu1ActionPerformed
 
 private void btnInAndOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInAndOutActionPerformed
-    PanelCashDeal panel = new PanelCashDeal();
-    JFrame jf = new JFrame();
-    jf.setTitle("出货");
-    jf.add(panel);
-    DesktopApplication1.getApplication().show(jf);
+    showPanel( new PanelCashDeal(),"出货");
 }//GEN-LAST:event_btnInAndOutActionPerformed
+
+private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+     showPanel(new PanelInStock(),"进货");
+}//GEN-LAST:event_jMenuItem1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnInAndOut;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
@@ -239,4 +253,15 @@ private void btnInAndOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
     private JDialog aboutBox;
+
+    private void initData() {
+        DataBaseUtil.initSqlsessionFactory();
+    }
+
+    void showPanel(JPanel panel, String title) {
+        JFrame jframe = new JFrame();
+        jframe.setTitle(title);
+        jframe.add(panel);
+        DesktopApplication1.getApplication().show(jframe);
+    }
 }
