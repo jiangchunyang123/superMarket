@@ -70,11 +70,6 @@ public class PanelCashDeal extends javax.swing.JPanel {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(spmkt.DesktopApplication1.class).getContext().getResourceMap(PanelCashDeal.class);
         txtInputText.setText(resourceMap.getString("txtInputText.text")); // NOI18N
         txtInputText.setName("txtInputText"); // NOI18N
-        txtInputText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInputTextActionPerformed(evt);
-            }
-        });
         txtInputText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtInputTextKeyReleased(evt);
@@ -191,10 +186,6 @@ private void txtInputTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }
     txtInputText.requestFocus();
 }//GEN-LAST:event_txtInputTextKeyReleased
-
-private void txtInputTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInputTextActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_txtInputTextActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     order.setStocks(stocks);

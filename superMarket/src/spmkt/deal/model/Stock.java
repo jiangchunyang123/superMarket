@@ -1,43 +1,124 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package spmkt.deal.model;
 
-import java.math.BigDecimal;
+import java.util.Date;
 
-/**
- *
- * @author Administrator
- */
-class Stock {
-    private int id;
-    private BigDecimal price;
-    private String type;
+public class Stock {
 
-    public int getId() {
+    private String filepath;
+    private Long id;
+    private String sellstate;
+    private String cname1;
+    private String cname2;
+    private Long inprice;
+    private Date indate;
+    private Long sellingprice;
+    private Long outprice;
+    private Date outdate;
+    private String factory;
+    private String barcode;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath == null ? null : filepath.trim();
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public String getSellstate() {
+        return sellstate;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setSellstate(String sellstate) {
+        this.sellstate = sellstate == null ? null : sellstate.trim();
     }
 
-    public String getType() {
-        return type;
+    public String getCname1() {
+        return cname1;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCname1(String cname1) {
+        this.cname1 = cname1 == null ? null : cname1.trim();
     }
-    
-    
+
+    public String getCname2() {
+        return cname2;
+    }
+
+    public void setCname2(String cname2) {
+        this.cname2 = cname2 == null ? null : cname2.trim();
+    }
+
+    public Long getInprice() {
+        return inprice;
+    }
+
+    public void setInprice(Long inprice) {
+        this.inprice = inprice;
+    }
+
+    public Date getIndate() {
+        return indate;
+    }
+
+    public void setIndate(Date indate) {
+        this.indate = indate;
+    }
+
+    public Long getSellingprice() {
+        return sellingprice;
+    }
+
+    public void setSellingprice(Long sellingprice) {
+        this.sellingprice = sellingprice;
+    }
+
+    public Long getOutprice() {
+        return outprice;
+    }
+
+    public void setOutprice(Long outprice) {
+        this.outprice = outprice;
+    }
+
+    public Date getOutdate() {
+        return outdate;
+    }
+
+    public void setOutdate(Date outdate) {
+        this.outdate = outdate;
+    }
+
+    public String getFactory() {
+        return factory;
+    }
+
+    public void setFactory(String factory) {
+        this.factory = factory == null ? null : factory.trim();
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode == null ? null : barcode.trim();
+    }
 }
