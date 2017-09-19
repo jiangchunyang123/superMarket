@@ -1,4 +1,4 @@
-package src.spmkt.deal.model;
+package spmkt.deal.model;
 
 import java.util.ArrayList;
 import java.util.Date;

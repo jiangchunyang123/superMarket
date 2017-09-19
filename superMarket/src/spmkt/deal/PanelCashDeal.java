@@ -180,6 +180,7 @@ public class PanelCashDeal extends javax.swing.JPanel {
 private void txtInputTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputTextKeyReleased
 
     String s = txtInputText.getText();
+    //回车键
     if (evt.getKeyCode() == 10) {
         calTotalPrice(s);
         txtInputText.setText(null);
@@ -191,7 +192,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     order.setStocks(stocks);
     int i = DataBaseUtil.inserDeal(order);
     if (i > 0) {
-        JOptionPane.showMessageDialog(jButton1, "结账成功");
+        JOptionPane.showMessageDialog(jButton1, "结账成功：共 "+order.getTotalPrice()+"元");
     } else {
         JOptionPane.showMessageDialog(jButton1, "结账失败");
     }
@@ -212,6 +213,14 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     // End of variables declaration//GEN-END:variables
 
     private void calTotalPrice(String text) {
+        if (StringUtils.isNullOrEmpty(text)) {
+            int i = JOptionPane.showConfirmDialog(this, "是否确认结账?", "确认结账", JOptionPane.YES_NO_OPTION);
+            //确认结账
+            if (i == 0) {
+                jButton1ActionPerformed(null);
+            }
+            return;
+        }
         StockDealModel deal = getDealModel(text);
         String details = txtDealDetails.getText();
         details = details + "\n" + deal.getStockName() + ":" + deal.getPrice();
@@ -225,7 +234,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
         totalPrice = totalPrice.add(deal.getPrice());
         txtTotalPrice.setText(totalPrice.toString());
-        
+
     }
 
     private StockDealModel getDealModel(String textCode) {

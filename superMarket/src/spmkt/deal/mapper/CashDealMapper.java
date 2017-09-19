@@ -4,11 +4,13 @@
  */
 package spmkt.deal.mapper;
 
+import spmkt.deal.model.OrderModel;
+
 /**
  *
  * @author Administrator
  */
 public interface CashDealMapper {
 
-    Integer findMaxIdOrder();
+    OrderModel findMaxIdOrder();
 }

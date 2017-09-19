@@ -1,5 +1,6 @@
 package spmkt.deal.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Stock {
@@ -9,14 +10,47 @@ public class Stock {
     private String sellstate;
     private String cname1;
     private String cname2;
-    private Long inprice;
+    private BigDecimal inprice;
     private Date indate;
-    private Long sellingprice;
-    private Long outprice;
+    private BigDecimal sellingprice;
+    private BigDecimal outprice;
     private Date outdate;
     private String factory;
     private String barcode;
     private String name;
+private String type1;
+
+    public String getType1() {
+        return type1;
+    }
+
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public BigDecimal getInprice() {
+        return inprice;
+    }
+
+    public void setInprice(BigDecimal inprice) {
+        this.inprice = inprice;
+    }
+
+    public BigDecimal getOutprice() {
+        return outprice;
+    }
+
+    public void setOutprice(BigDecimal outprice) {
+        this.outprice = outprice;
+    }
+
+    public BigDecimal getSellingprice() {
+        return sellingprice;
+    }
+
+    public void setSellingprice(BigDecimal sellingprice) {
+        this.sellingprice = sellingprice;
+    }
 
     public String getName() {
         return name;
@@ -66,36 +100,12 @@ public class Stock {
         this.cname2 = cname2 == null ? null : cname2.trim();
     }
 
-    public Long getInprice() {
-        return inprice;
-    }
-
-    public void setInprice(Long inprice) {
-        this.inprice = inprice;
-    }
-
     public Date getIndate() {
         return indate;
     }
 
     public void setIndate(Date indate) {
         this.indate = indate;
-    }
-
-    public Long getSellingprice() {
-        return sellingprice;
-    }
-
-    public void setSellingprice(Long sellingprice) {
-        this.sellingprice = sellingprice;
-    }
-
-    public Long getOutprice() {
-        return outprice;
-    }
-
-    public void setOutprice(Long outprice) {
-        this.outprice = outprice;
     }
 
     public Date getOutdate() {

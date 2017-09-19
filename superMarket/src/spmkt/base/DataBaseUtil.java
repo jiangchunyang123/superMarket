@@ -7,6 +7,7 @@ package spmkt.base;
 import java.io.IOException;
 
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spmkt.deal.model.OrderModel;
@@ -28,7 +29,8 @@ import spmkt.deal.model.Stock;
 public class DataBaseUtil {
 
     private static SqlSessionFactory sqlSessionFactory;
-    private static Logger logger = Logger.getLogger(DataBaseUtil.class.getName());
+    private static SqlSession sqlSession;
+    private static final Logger logger = Logger.getLogger(DataBaseUtil.class.getName());
     private static ConcurrentHashMap<String, Object> mappers = new ConcurrentHashMap<String, Object>();
 
     public static int inserDeal(OrderModel order) {
@@ -39,7 +41,7 @@ public class DataBaseUtil {
 
     public static SqlSessionFactory initSqlsessionFactory() {
         if (sqlSessionFactory == null) {
-            String resource = "spmkt/resources/mybatis.xml";
+            String resource = "config/mybatis.xml";
             InputStream inputStream = null;
             try {
                 inputStream = Resources.getResourceAsStream(resource);
@@ -51,46 +53,54 @@ public class DataBaseUtil {
         return sqlSessionFactory;
     }
 
+    public static SqlSession initSqlSession() {
+        if (sqlSession == null) {
+            sqlSession = initSqlsessionFactory().openSession(true);
+        }
+        return sqlSession;
+    }
+
     public static String initTradeid(OrderModel order) {
-        Date today = new Date();
-        String todayStr = DateUtils.date2Str(today);
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
-            CashDealMapper mapper = session.getMapper(CashDealMapper.class);
-            order.setId(mapper.findMaxIdOrder() + 1);
-        } finally {
-            session.close();
-        }
-        String tradeid = todayStr + "";
-        return tradeid;
+        String todayStr = DateUtils.date2Str(new Date());
+        CashDealMapper mapper = (CashDealMapper) getMapper(CashDealMapper.class);
+        OrderModel maxOrder = mapper.findMaxIdOrder();
+        String maxTradeid = maxOrder.getTradeid().substring(8);
+        String newstTradeid = todayStr + (Integer.valueOf(maxTradeid) + 1);
+        order.setTradeid(newstTradeid);
+        return newstTradeid;
     }
 
-    public static Stock queryStockById(int id) {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            StockMapper mapper = session.getMapper(StockMapper.class);
-            Stock s = mapper.queryById(id);
-            return s;
-        } catch (Exception e) {
-            logger.log(Level.WARNING, e.getMessage());
-        } finally {
-            session.close();
-        }
-        return null;
+    /**
+     * 通过商品名获取详细信息
+     * @param id
+     * @return 
+     */
+    public static Stock queryStockByBarcode(String barCode) {
+        StockMapper mapper = (StockMapper) getMapper(StockMapper.class);
+        return mapper.queryStockByBarcode(barCode);
     }
 
-    public static void saveStock(Stock stock) {
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
-            StockMapper mapper = session.getMapper(StockMapper.class);
+    /**
+     * 保存一个商品
+     * @param stock 
+     */
+    public static int saveStock(Stock stock) {
+    
+        StockMapper mapper = (StockMapper) getMapper(StockMapper.class);
+        int result = mapper.insert(stock);
+        sqlSession.commit();
+        sqlSession.close();
+        return result;
+    }
 
-            mapper.insert(stock);
-        } catch (Exception e) {
-            logger.log(Level.WARNING, e.getMessage());
-        } finally {
-            session.close();
+    /**
+     *获取mapper 
+     */
+    private static Object getMapper(Class<?> aClass) {
+        if (mappers.get(aClass.getName()) == null) {
+            sqlSession = sqlSessionFactory.openSession(true);
+            mappers.put(aClass.getName(), sqlSession.getMapper(aClass));
         }
-
+        return mappers.get(aClass.getName());
     }
 }

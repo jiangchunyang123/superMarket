@@ -15,12 +15,36 @@ public class StockDealModel {
 
     private int id;
     private int stockId;
-    private String stockName;
     private BigDecimal price;
     private Date dealdate;
-    private String tradeid;
-   
-    
+    private int orderid;
+    private String status;
+    private String stockName;
+
+    public String getStockName() {
+        return stockName;
+    }
+
+    public void setStockName(String stockName) {
+        this.stockName = stockName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(int orderid) {
+        this.orderid = orderid;
+    }
+
     public Date getDealdate() {
         return dealdate;
     }
@@ -51,21 +75,5 @@ public class StockDealModel {
 
     public void setStockId(int stockId) {
         this.stockId = stockId;
-    }
-
-    public String getStockName() {
-        return stockName;
-    }
-
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
-    }
-
-    public String getTradeid() {
-        return tradeid;
-    }
-
-    public void setTradeid(String tradeid) {
-        this.tradeid = tradeid;
     }
 }

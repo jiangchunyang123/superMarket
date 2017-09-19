@@ -4,7 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import spmkt.deal.model.Stock;
-import src.spmkt.deal.model.StockExample;
+import spmkt.deal.model.StockExample;
 
 public interface StockMapper {
     int countByExample(StockExample example);
@@ -21,4 +21,6 @@ public interface StockMapper {
 
     int updateByExample(@Param("record") Stock record, @Param("example") StockExample example);
    Stock queryById(int id);
+
+    public Stock queryStockByBarcode(String barCode);
 }

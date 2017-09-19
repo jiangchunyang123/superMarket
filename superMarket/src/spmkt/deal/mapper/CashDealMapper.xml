@@ -3,7 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spmkt.deal.mapper.CashDealMapper">
-  <select id="findMaxIdOrder" parameterType="Order" resultType="int">
-    select max(id) from stock_info
+  <select id="findMaxIdOrder" parameterType="Order" resultType="spmkt.deal.model.OrderModel">
+    select * from order where id =(
+        select max(id) from order
+    )
   </select>
 </mapper>

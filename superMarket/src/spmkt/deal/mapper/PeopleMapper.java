@@ -1,6 +1,6 @@
 package spmkt.deal.mapper;
 
-import src.spmkt.deal.model.People;
+import spmkt.deal.model.People;
 
 public interface PeopleMapper {
     int deleteByPrimaryKey(String id);

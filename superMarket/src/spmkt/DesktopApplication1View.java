@@ -255,7 +255,7 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private JDialog aboutBox;
 
     private void initData() {
-        DataBaseUtil.initSqlsessionFactory();
+        DataBaseUtil.initSqlSession();
     }
 
     void showPanel(JPanel panel, String title) {

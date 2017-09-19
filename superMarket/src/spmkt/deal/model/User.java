@@ -1,4 +1,4 @@
-package src.spmkt.deal.model;
+package spmkt.deal.model;
 
 public class User {
     private String id;
