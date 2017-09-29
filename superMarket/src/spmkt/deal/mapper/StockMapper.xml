@@ -102,12 +102,12 @@
     insert into stock_info (filePath, sellState, 
       cName1, cName2, inPrice, 
       inDate, sellingPrice, outPrice, 
-      outDate, factory, barcodeu888888888888i
+      outDate, factory, barcode,remainPosition
       )
     values (#{filepath,jdbcType=VARCHAR}, #{sellstate,jdbcType=VARCHAR}, 
       #{cname1,jdbcType=VARCHAR}, #{cname2,jdbcType=VARCHAR}, #{inprice,jdbcType=DECIMAL}, 
       #{indate,jdbcType=DATE}, #{sellingprice,jdbcType=DECIMAL}, #{outprice,jdbcType=DECIMAL}, 
-      #{outdate,jdbcType=DATE}, #{factory,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}
+      #{outdate,jdbcType=DATE}, #{factory,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, #{remainPosition}
       )
   </insert>
   <insert id="insertSelective" parameterType="spmkt.deal.model.Stock">
@@ -261,4 +261,9 @@
   <select id ="queryStockByBarcode" parameterType="java.lang.String" resultMap="BaseResultMap">
       select * from stock_info where barcode =#{barcode} 
   </select>
+  
+  <update id="addStockPosition" parameterType="map">
+      update stock_info set remainPosition = (remainPosition+${num})
+      where barcode =#{barcode}
+  </update>
 </mapper>

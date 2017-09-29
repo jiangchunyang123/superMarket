@@ -6,7 +6,7 @@ import java.util.Date;
 public class Stock {
 
     private String filepath;
-    private Long id;
+    private int id;
     private String sellstate;
     private String cname1;
     private String cname2;
@@ -18,7 +18,16 @@ public class Stock {
     private String factory;
     private String barcode;
     private String name;
-private String type1;
+    private Integer remainPosition;
+    private String type1;
+
+    public Integer getRemainPosition() {
+        return remainPosition;
+    }
+
+    public void setRemainPosition(Integer remainPosition) {
+        this.remainPosition = remainPosition;
+    }
 
     public String getType1() {
         return type1;
@@ -68,13 +77,15 @@ private String type1;
         this.filepath = filepath == null ? null : filepath.trim();
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+
 
     public String getSellstate() {
         return sellstate;

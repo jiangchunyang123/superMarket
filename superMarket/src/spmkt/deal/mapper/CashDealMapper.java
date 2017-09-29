@@ -5,6 +5,7 @@
 package spmkt.deal.mapper;
 
 import spmkt.deal.model.OrderModel;
+import spmkt.deal.model.StockDealModel;
 
 /**
  *
@@ -13,4 +14,10 @@ import spmkt.deal.model.OrderModel;
 public interface CashDealMapper {
 
     OrderModel findMaxIdOrder();
+
+    public int insertOrder(OrderModel order);
+
+    public int insertDeal(StockDealModel deal);
+
+
 }

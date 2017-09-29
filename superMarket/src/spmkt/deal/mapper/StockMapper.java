@@ -23,4 +23,6 @@ public interface StockMapper {
    Stock queryById(int id);
 
     public Stock queryStockByBarcode(String barCode);
+
+    public int addStockPosition(@Param("barcode")String barcode,@Param("num") int num);
 }

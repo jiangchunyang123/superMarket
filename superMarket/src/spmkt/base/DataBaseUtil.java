@@ -21,6 +21,7 @@ import spmkt.deal.mapper.CashDealMapper;
 import spmkt.deal.mapper.StockMapper;
 
 import spmkt.deal.model.Stock;
+import spmkt.deal.model.StockDealModel;
 
 /**
  *
@@ -36,6 +37,11 @@ public class DataBaseUtil {
     public static int inserDeal(OrderModel order) {
         int i = 0;
         initTradeid(order);
+        CashDealMapper mapper = (CashDealMapper) getMapper(CashDealMapper.class);
+        i = mapper.insertOrder(order);
+        for (StockDealModel deal : order.getStocks()) {
+            i = mapper.insertDeal(deal);
+        }
         return i;
     }
 
@@ -64,6 +70,10 @@ public class DataBaseUtil {
         String todayStr = DateUtils.date2Str(new Date());
         CashDealMapper mapper = (CashDealMapper) getMapper(CashDealMapper.class);
         OrderModel maxOrder = mapper.findMaxIdOrder();
+        if (maxOrder == null) {
+            maxOrder = new OrderModel();
+            maxOrder.setTradeid(todayStr + 0);
+        }
         String maxTradeid = maxOrder.getTradeid().substring(8);
         String newstTradeid = todayStr + (Integer.valueOf(maxTradeid) + 1);
         order.setTradeid(newstTradeid);
@@ -84,10 +94,18 @@ public class DataBaseUtil {
      * 保存一个商品
      * @param stock 
      */
-    public static int saveStock(Stock stock) {
-    
+    public static int insertOrUpdateStock(Stock stock) {
+
         StockMapper mapper = (StockMapper) getMapper(StockMapper.class);
-        int result = mapper.insert(stock);
+        int result = 0;
+        Stock s = mapper.queryStockByBarcode(stock.getBarcode());
+        if (s != null) {
+            result = mapper.addStockPosition(stock.getBarcode(), 1);
+        } else {
+            stock.setRemainPosition(1);
+            result = mapper.insert(stock);
+        }
+
         sqlSession.commit();
         sqlSession.close();
         return result;
@@ -97,10 +115,7 @@ public class DataBaseUtil {
      *获取mapper 
      */
     private static Object getMapper(Class<?> aClass) {
-        if (mappers.get(aClass.getName()) == null) {
-            sqlSession = sqlSessionFactory.openSession(true);
-            mappers.put(aClass.getName(), sqlSession.getMapper(aClass));
-        }
-        return mappers.get(aClass.getName());
+        sqlSession = sqlSessionFactory.openSession(true);
+        return sqlSession.getMapper(aClass);
     }
 }
