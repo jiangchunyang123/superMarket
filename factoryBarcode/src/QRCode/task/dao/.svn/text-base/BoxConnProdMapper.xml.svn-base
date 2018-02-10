@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="QRCode.task.dao.BoxConnProdMapper" >
+  <resultMap id="BaseResultMap" type="QRCode.task.model.BoxConnProd" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="boxCOde" property="boxcode" jdbcType="VARCHAR" />
+    <result column="prodCOde" property="prodcode" jdbcType="VARCHAR" />
+    <result column="taskId" property="taskid" jdbcType="INTEGER" />
+    <result column="batch" property="batch" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, boxCOde, prodCOde, taskId, batch, size
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from box_conn_prod
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from box_conn_prod
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="QRCode.task.model.BoxConnProd" >
+    insert into box_conn_prod (boxCOde, prodCOde, 
+      taskId, batch, size
+      )
+    values ( #{boxcode,jdbcType=VARCHAR}, #{prodcode,jdbcType=VARCHAR}, 
+      #{taskid,jdbcType=INTEGER}, #{batch,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="QRCode.task.model.BoxConnProd" >
+    insert into box_conn_prod
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="boxcode != null" >
+        boxCOde,
+      </if>
+      <if test="prodcode != null" >
+        prodCOde,
+      </if>
+      <if test="taskid != null" >
+        taskId,
+      </if>
+      <if test="batch != null" >
+        batch,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="boxcode != null" >
+        #{boxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodcode != null" >
+        #{prodcode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="batch != null" >
+        #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="QRCode.task.model.BoxConnProd" >
+    update box_conn_prod
+    <set >
+      <if test="boxcode != null" >
+        boxCOde = #{boxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodcode != null" >
+        prodCOde = #{prodcode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null" >
+        taskId = #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="batch != null" >
+        batch = #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="QRCode.task.model.BoxConnProd" >
+    update box_conn_prod
+    set boxCOde = #{boxcode,jdbcType=VARCHAR},
+      prodCOde = #{prodcode,jdbcType=VARCHAR},
+      taskId = #{taskid,jdbcType=INTEGER},
+      batch = #{batch,jdbcType=VARCHAR},
+      size = #{size,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QRCode.task.dao.TaskMapper">
+  <resultMap id="BaseResultMap" type="QRCode.task.model.Task">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="prodid" jdbcType="INTEGER" property="prodid" />
+    <result column="batchNumber" jdbcType="VARCHAR" property="batchnumber" />
+    <result column="batchLine" jdbcType="VARCHAR" property="batchline" />
+    <result column="batchDate" jdbcType="DATE" property="batchdate" />
+    <result column="endDate" jdbcType="DATE" property="enddate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="standard" jdbcType="VARCHAR" property="standard" />
+    <result column="taskCode" jdbcType="VARCHAR" property="taskcode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, prodid, batchNumber, batchLine, batchDate, endDate, status, remark, standard, 
+    taskCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from task
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="QRCode.task.model.Task">
+    insert into task (id, prodid, batchNumber, 
+      batchLine, batchDate, endDate, 
+      status, remark, standard, 
+      taskCode)
+    values (#{id,jdbcType=INTEGER}, #{prodid,jdbcType=INTEGER}, #{batchnumber,jdbcType=VARCHAR}, 
+      #{batchline,jdbcType=VARCHAR}, #{batchdate,jdbcType=DATE}, #{enddate,jdbcType=DATE}, 
+      #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
+      #{taskcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="QRCode.task.model.Task">
+    insert into task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="prodid != null">
+        prodid,
+      </if>
+      <if test="batchnumber != null">
+        batchNumber,
+      </if>
+      <if test="batchline != null">
+        batchLine,
+      </if>
+      <if test="batchdate != null">
+        batchDate,
+      </if>
+      <if test="enddate != null">
+        endDate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="standard != null">
+        standard,
+      </if>
+      <if test="taskcode != null">
+        taskCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="prodid != null">
+        #{prodid,jdbcType=INTEGER},
+      </if>
+      <if test="batchnumber != null">
+        #{batchnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="batchline != null">
+        #{batchline,jdbcType=VARCHAR},
+      </if>
+      <if test="batchdate != null">
+        #{batchdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null">
+        #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="taskcode != null">
+        #{taskcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="QRCode.task.model.Task">
+    update task
+    <set>
+      <if test="prodid != null">
+        prodid = #{prodid,jdbcType=INTEGER},
+      </if>
+      <if test="batchnumber != null">
+        batchNumber = #{batchnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="batchline != null">
+        batchLine = #{batchline,jdbcType=VARCHAR},
+      </if>
+      <if test="batchdate != null">
+        batchDate = #{batchdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        endDate = #{enddate,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null">
+        standard = #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="taskcode != null">
+        taskCode = #{taskcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="QRCode.task.model.Task">
+    update task
+    set prodid = #{prodid,jdbcType=INTEGER},
+      batchNumber = #{batchnumber,jdbcType=VARCHAR},
+      batchLine = #{batchline,jdbcType=VARCHAR},
+      batchDate = #{batchdate,jdbcType=DATE},
+      endDate = #{enddate,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      standard = #{standard,jdbcType=VARCHAR},
+      taskCode = #{taskcode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+    <select id="queryByModel" parameterType="QRCode.task.model.Task" resultMap ="BaseResultMap">    
+      select * from task 
+      <where>
+      <if test="prodid!=null">
+          and prodid =#{prodid}
+      </if>    
+      </where>
+      order by batchDate desc
+  </select>
+</mapper>

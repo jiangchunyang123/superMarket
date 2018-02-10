@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/data/!svn/ver/31/client/factoryBarcode/src/QRCode/base
+END
+StringUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/data/!svn/ver/33/client/factoryBarcode/src/QRCode/base/StringUtils.java
+END
+StringUTils.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/data/!svn/ver/20/client/factoryBarcode/src/QRCode/base/StringUTils.java
+END
+Constants.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/data/!svn/ver/16/client/factoryBarcode/src/QRCode/base/Constants.java
+END
+VoiceUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/data/!svn/ver/38/client/factoryBarcode/src/QRCode/base/VoiceUtils.java
+END
+DataBaseUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/data/!svn/ver/40/client/factoryBarcode/src/QRCode/base/DataBaseUtil.java
+END
+JfreeChartUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/data/!svn/ver/35/client/factoryBarcode/src/QRCode/base/JfreeChartUtils.java
+END
+DateUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/data/!svn/ver/13/client/factoryBarcode/src/QRCode/base/DateUtils.java
+END
+VoiceEnum.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/data/!svn/ver/38/client/factoryBarcode/src/QRCode/base/VoiceEnum.java
+END
