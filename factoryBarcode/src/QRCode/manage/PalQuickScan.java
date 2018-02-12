@@ -142,6 +142,7 @@ private void txtStockCodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     if (evt.getKeyCode() == 10) {
         query();
     }
+    txtStockName.setText("");
 }//GEN-LAST:event_txtStockCodeKeyReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

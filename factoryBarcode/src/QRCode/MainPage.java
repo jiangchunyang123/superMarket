@@ -10,6 +10,9 @@
  */
 package QRCode;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -27,6 +30,7 @@ import QRCode.task.PalTaskManage;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -69,16 +73,18 @@ public class MainPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jToolBar2 = new javax.swing.JToolBar();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu menu01 = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu menu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         javax.swing.JMenu menu03 = new javax.swing.JMenu();
-        mnu0301 = new javax.swing.JMenuItem();
         menue02 = new javax.swing.JMenu();
-        menu0202 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         mnu302 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -157,7 +163,7 @@ public class MainPage extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("主界面", mainPanel);
@@ -173,7 +179,7 @@ public class MainPage extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -182,6 +188,51 @@ public class MainPage extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jToolBar1.setRollover(true);
+        jToolBar1.setName("jToolBar1"); // NOI18N
+
+        jToolBar2.setRollover(true);
+        jToolBar2.setName("jToolBar2"); // NOI18N
+
+        jButton1.setBackground(new java.awt.Color(-14336,true));
+        jButton1.setText("商品快查");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButton1);
+
+        jButton2.setBackground(new java.awt.Color(-16711681,true));
+        jButton2.setText("柜台交易");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setName("jButton2"); // NOI18N
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButton2);
+
+        jButton3.setBackground(new java.awt.Color(-20561,true));
+        jButton3.setText("商品管理");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setName("jButton3"); // NOI18N
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButton3);
 
         menuBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(-16777216,true)));
         menuBar.setFont(new java.awt.Font("微软雅黑", 1, 14));
@@ -234,40 +285,11 @@ public class MainPage extends javax.swing.JFrame {
                 menu03ActionPerformed(evt);
             }
         });
-
-        mnu0301.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_SPACE, java.awt.event.InputEvent.CTRL_MASK));
-        mnu0301.setText("扫码出库");
-        mnu0301.setName("mnu0301"); // NOI18N
-        mnu0301.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnu0301ActionPerformed(evt);
-            }
-        });
-        menu03.add(mnu0301);
-
         menuBar.add(menu03);
 
         menue02.setText("仓库");
         menue02.setFont(new java.awt.Font("微软雅黑", 0, 18));
         menue02.setName("menue02"); // NOI18N
-
-        menu0202.setText("任务管理");
-        menu0202.setName("menu0202"); // NOI18N
-        menu0202.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu0202ActionPerformed(evt);
-            }
-        });
-        menue02.add(menu0202);
-
-        jMenuItem1.setText("产品管理");
-        jMenuItem1.setName("jMenuItem1"); // NOI18N
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        menue02.add(jMenuItem1);
 
         mnu302.setText("商品管理");
         mnu302.setName("mnu302"); // NOI18N
@@ -296,46 +318,29 @@ public class MainPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void menu0202ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu0202ActionPerformed
-    //  showPanel(new PalTaskManage(), "任务管理");
-
-    showtabPanel("任务管理");
-}//GEN-LAST:event_menu0202ActionPerformed
-
-private void mnu0301ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnu0301ActionPerformed
-    // showPanel(new SocketScanManage(), "端口扫码管理");
-
-    showtabPanel("端口扫码管理");
-}//GEN-LAST:event_mnu0301ActionPerformed
-
 private void menu01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu01ActionPerformed
 }//GEN-LAST:event_menu01ActionPerformed
 
 private void menu03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu03ActionPerformed
 }//GEN-LAST:event_menu03ActionPerformed
-
-private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    //showPanel(new PalProductManage(), "产品管理");
-
-    showtabPanel("产品管理");
-}//GEN-LAST:event_jMenuItem1ActionPerformed
-
-private void mnu302ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnu302ActionPerformed
-    showtabPanel("商品管理");
-}//GEN-LAST:event_mnu302ActionPerformed
 
 private void menu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu4ActionPerformed
 }//GEN-LAST:event_menu4ActionPerformed
@@ -347,6 +352,22 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
     showtabPanel("商品快查");
 }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+private void mnu302ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnu302ActionPerformed
+    showtabPanel("商品管理");
+}//GEN-LAST:event_mnu302ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  showtabPanel("商品快查");
+}//GEN-LAST:event_jButton1ActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+  showtabPanel("柜台交易");
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    showtabPanel("商品管理");
+}//GEN-LAST:event_jButton3ActionPerformed
 
     private void showtabPanel(String title) {
         Component c = null;
@@ -374,6 +395,29 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         ButtonTabComponent btn = new ButtonTabComponent(jTabbedPane1, compMap, title);
         jTabbedPane1.setTabComponentAt(jTabbedPane1.indexOfComponent(c), btn);
         jTabbedPane1.setSelectedComponent(c);
+        initCompData(c);
+    }
+
+    void initCompData(Component c) {
+        Class<?> c1 = c.getClass();
+        try {
+            Method m = c1.getMethod("initData");
+            try {
+                m.invoke(c);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalArgumentException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvocationTargetException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (NoSuchMethodException ex) {
+
+            Logger.getLogger(MainPage.class.getName()).log(Level.INFO,"该component未实现initData方法");
+        } catch (SecurityException ex) {
+            Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     private ImageIcon createImageIcon(String path) {
@@ -494,8 +538,10 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         jframe.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
@@ -504,11 +550,11 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JMenuItem menu0202;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menue02;
-    private javax.swing.JMenuItem mnu0301;
     private javax.swing.JMenuItem mnu302;
     // End of variables declaration//GEN-END:variables
 }

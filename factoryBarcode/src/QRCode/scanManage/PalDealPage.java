@@ -24,6 +24,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javafx.scene.input.KeyCode;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
@@ -38,7 +39,6 @@ public class PalDealPage extends javax.swing.JPanel {
     /** Creates new form PalDealPage */
     public PalDealPage() {
         initComponents();
-        txtProdCode.requestFocus();
         btnSave.registerKeyboardAction(new ActionListener() {
 
             @Override
@@ -46,7 +46,41 @@ public class PalDealPage extends javax.swing.JPanel {
                 settleAccounts();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.CTRL_DOWN_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
-     
+        jTable1.registerKeyboardAction(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectTable();
+            }
+        }, KeyStroke.getKeyStroke(KeyCode.SPACE.toString()), JComponent.WHEN_IN_FOCUSED_WINDOW);
+        jTable1.registerKeyboardAction(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteRow();
+            }
+
+            private void deleteRow() {
+                int index = jTable1.getSelectedRow();
+                ((DefaultTableModel) jTable1.getModel()).removeRow(index);
+                calTotalPrice();
+                txtProdCode.requestFocus();
+            }
+        }, KeyStroke.getKeyStroke(KeyCode.DELETE.toString()), JComponent.WHEN_IN_FOCUSED_WINDOW);
+        txtProdCode.requestFocus();
+
+    }
+
+    public void initData() {
+        txtProdCode.requestFocus();
+    }
+
+    private void selectTable() {
+        if (jTable1.getRowCount() > 0) {
+            jTable1.setRowSelectionInterval(0, 0);
+        }
+        txtProdCode.setText("");
+        jTable1.requestFocus();
     }
 
     /** This method is called from within the constructor to
@@ -81,7 +115,7 @@ public class PalDealPage extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, true, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -106,10 +140,12 @@ public class PalDealPage extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel1.setText("合计：");
         jLabel1.setName("jLabel1"); // NOI18N
 
         txtTotalPrice.setEditable(false);
+        txtTotalPrice.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txtTotalPrice.setText(" ");
         txtTotalPrice.setName("txtTotalPrice"); // NOI18N
 
@@ -181,11 +217,11 @@ public class PalDealPage extends javax.swing.JPanel {
 
 private void txtProdCodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProdCodeKeyReleased
     if (10 == evt.getKeyCode()) {
-        String txt = txtProdCode.getText();
+        String txt = txtProdCode.getText() == null ? null : txtProdCode.getText().trim();
         if (StringUtils.isNullOrEmpty(txt)) {
             return;
         }
-        Stock stock = DataBaseUtil.findStockByBarCode(txtProdCode.getText());
+        Stock stock = DataBaseUtil.findStockByBarCode(txt);
         if (stock == null) {
             MessageUtils.showMessage("当前商品在数据库中无记录，请在右侧手动输入单价！");
             txtSinglePrice.requestFocus();
@@ -193,6 +229,7 @@ private void txtProdCodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
             addStock(stock);
         }
         txtTotalPrice.setText(calTotalPrice().toString());
+        txtProdCode.setText(null);
     }
 }//GEN-LAST:event_txtProdCodeKeyReleased
     public void addStock(Stock stock) {
